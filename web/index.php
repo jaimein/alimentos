@@ -18,12 +18,13 @@ $map = array(
     Puede quedar de la siguiente manera
     'inicio' => array('controller' =>'Controller', 'action' =>'inicio', 'nivel_usuario'=>0)
     */
-    'inicio' => array('controller' =>'Controller', 'action' =>'inicio'),
-    'listar' => array('controller' =>'Controller', 'action' =>'listar'),
-    'insertar' => array('controller' =>'Controller', 'action' =>'insertar'),
-    'buscar' => array('controller' =>'Controller', 'action' =>'buscarPorNombre'),
-    'ver' => array('controller' =>'Controller', 'action' =>'ver'),
-    'error' => array('controller' =>'Controller', 'action' =>'error')
+    'inicio' => array('controller' =>'Controller', 'action' =>'inicio', 'nivel_usuario'=>0),
+    'registro' => array('controller' =>'Controller', 'action' =>'registro', 'nivel_usuario'=>0),
+    'listar' => array('controller' =>'Controller', 'action' =>'listar', 'nivel_usuario'=>1),
+    'insertar' => array('controller' =>'Controller', 'action' =>'insertar', 'nivel_usuario'=>2),
+    'buscar' => array('controller' =>'Controller', 'action' =>'buscarPorNombre', 'nivel_usuario'=>1),
+    'ver' => array('controller' =>'Controller', 'action' =>'ver', 'nivel_usuario'=>1),
+    'error' => array('controller' =>'Controller', 'action' =>'error', 'nivel_usuario'=>0)
 );
 // Parseo de la ruta
 if (isset($_GET['ctl'])) {
