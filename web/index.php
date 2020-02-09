@@ -19,6 +19,7 @@ $map = array(
     'inicio' => array('controller' =>'Controller', 'action' =>'inicio', 'nivel_usuario'=>0)
     */
     'inicio' => array('controller' =>'Controller', 'action' =>'inicio', 'nivel_usuario'=>0),
+    'login' => array('controller' =>'Controller', 'action' =>'login', 'nivel_usuario'=>0),
     'registro' => array('controller' =>'Controller', 'action' =>'registro', 'nivel_usuario'=>0),
     'listar' => array('controller' =>'Controller', 'action' =>'listar', 'nivel_usuario'=>1),
     'insertar' => array('controller' =>'Controller', 'action' =>'insertar', 'nivel_usuario'=>2),
