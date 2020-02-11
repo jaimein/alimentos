@@ -4,8 +4,8 @@
 require_once __DIR__ . '/../app/Config.php';
 require_once __DIR__ . '/../app/Model.php';
 require_once __DIR__ . '/../app/Controller.php';
-
-
+require_once __DIR__ . '/../app/libs/sesion.php';
+sec_session_start();
 /*
 Si tenemos que usar sesiones podemos poner aqui el inicio de sesión, de manera que si el usuario todavia no está logueado
 lo identificamos como visitante, por ejemplo de la siguiente manera: $_SESSION['nivel_usuario']=0
@@ -50,8 +50,18 @@ En caso de estar utilizando sesiones y permisos en las diferentes acciones compr
 */
 
 if (method_exists($controlador['controller'],$controlador['action'])) {
-    call_user_func(array(new $controlador['controller'],
+    if ($controlador['nivel_usuario']<=$_SESSION['nivel_usuario']) {
+        call_user_func(array(new $controlador['controller'],
         $controlador['action']));
+    } else {
+        header('Status: 403 Forbiden');
+        echo '<html><body><h1>Error 403: No tiene acceso al controlador <i>' .
+            $controlador['controller'] .
+            '->' .
+            $controlador['action'] .
+            '</i> </h1></body></html>';
+    }
+
 } else {
     header('Status: 404 Not Found');
     echo '<html><body><h1>Error 404: El controlador <i>' .

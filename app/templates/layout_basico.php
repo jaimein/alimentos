@@ -10,7 +10,7 @@
 
 <body>
     <div id="cabecera">
-        <h1>Información de alimentos</h1>
+        <h1>Pagina web de información de alimentos</h1>
     </div>
 
     <div id="contenido">

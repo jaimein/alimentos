@@ -1,0 +1,1 @@
+SQLSTATE[23000]: Integrity constraint violation: 1048 Column 'user' cannot be null0.94269700 1581444078

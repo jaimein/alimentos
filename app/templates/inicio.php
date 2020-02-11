@@ -1,4 +1,4 @@
-<?php ob_start() ?>
+<?php ob_start()?>
 <h1>Inicio</h1>
 <h3> Fecha: <?php echo $params['fecha'] ?> </h3>
 <?php echo $params['mensaje'] ?>
@@ -20,12 +20,12 @@
         </tr>
         <tr>
             <td colspan="2">
-                <input type="button" class="boton-login" value="Registro" onclick="location.href='../'">
-                <input type="submit" class="boton-login" value="Login" onclick="formhash(this.form, this.form.password);" />
+                <input type="button" class="boton-login" value="Registro" onclick="location.href='index.php?ctl=registro'">
+                <input type="submit" class="boton-login" value="Login" />
             </td>
         </tr>
     </table>
 </form>
 
-<?php $contenido = ob_get_clean() ?>
-<?php include 'layout.php' ?>
+<?php $contenido = ob_get_clean()?>
+<?php include 'layout_basico.php'?>

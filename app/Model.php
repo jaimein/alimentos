@@ -70,6 +70,40 @@ class Model extends PDO
         return $result;
     }
 
-    
+    public function insertarUsuario($usuario, $password, $nivel, $email, $ciudad)
+    {
+        $consulta = "INSERT INTO `users`(`user`, `pass`, `nivel`, `email`, `ciudad`) VALUES (?,?,?,?,?)";
+        $result = $this->conexion->prepare($consulta);
+        $result->bindParam(1, $usuario);
+        $result->bindParam(2, $password);
+        $result->bindParam(3, $nivel);
+        $result->bindParam(4, $email);
+        $result->bindParam(5, $ciudad);
+        $result->execute();
+                
+        return $result;
+    }
+
+    public function comprobar_si_existe_usuario($usu){
+        $consulta = "SELECT * FROM `users` where user like :nombre";
+        $result = $this->conexion->prepare($consulta);
+        $result->bindParam(':nombre', $nombre);
+        $result->execute();
+           
+        if($result->fetch()){
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public function obtener_datos_usu($usuario, $password){
+        $consulta = "SELECT `id`, `user`, `pass`, `nivel`, `email`, `ciudad` FROM `users` where user like :nombre and pass like :pass";
+        $result = $this->conexion->prepare($consulta);
+        $result->bindParam(':nombre', $usuario);
+        $result->bindParam(':pass', $password);
+        $result->execute();
+        return $result->fetch();
+    }
 }
 ?>
