@@ -1,5 +1,5 @@
 <?php ob_start() ?>
-
+<?php echo $_SESSION['nivel_usuario'] ?></a></td>
 <table>
 <tr>
 <th>alimento (por 100g)</th>

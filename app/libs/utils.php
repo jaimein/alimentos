@@ -26,4 +26,13 @@ function sinEspacios($frase) {
     $texto = trim(preg_replace('/ +/', ' ', $frase));
     return $texto;
 }
+
+function validaUsuario($usu){
+
+    if(comprobar_si_existe_usuario($usu)){
+        return true;
+    } else {
+        return false;
+    }
+}
 ?>

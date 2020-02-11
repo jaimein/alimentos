@@ -4,8 +4,8 @@
 require_once __DIR__ . '/../app/Config.php';
 require_once __DIR__ . '/../app/Model.php';
 require_once __DIR__ . '/../app/Controller.php';
-
-
+require_once __DIR__ . '/../app/libs/sesion.php';
+sec_session_start();
 /*
 Si tenemos que usar sesiones podemos poner aqui el inicio de sesión, de manera que si el usuario todavia no está logueado
 lo identificamos como visitante, por ejemplo de la siguiente manera: $_SESSION['nivel_usuario']=0
@@ -18,12 +18,14 @@ $map = array(
     Puede quedar de la siguiente manera
     'inicio' => array('controller' =>'Controller', 'action' =>'inicio', 'nivel_usuario'=>0)
     */
-    'inicio' => array('controller' =>'Controller', 'action' =>'inicio'),
-    'listar' => array('controller' =>'Controller', 'action' =>'listar'),
-    'insertar' => array('controller' =>'Controller', 'action' =>'insertar'),
-    'buscar' => array('controller' =>'Controller', 'action' =>'buscarPorNombre'),
-    'ver' => array('controller' =>'Controller', 'action' =>'ver'),
-    'error' => array('controller' =>'Controller', 'action' =>'error')
+    'inicio' => array('controller' =>'Controller', 'action' =>'inicio', 'nivel_usuario'=>0),
+    'login' => array('controller' =>'Controller', 'action' =>'login', 'nivel_usuario'=>0),
+    'registro' => array('controller' =>'Controller', 'action' =>'registro', 'nivel_usuario'=>0),
+    'listar' => array('controller' =>'Controller', 'action' =>'listar', 'nivel_usuario'=>1),
+    'insertar' => array('controller' =>'Controller', 'action' =>'insertar', 'nivel_usuario'=>2),
+    'buscar' => array('controller' =>'Controller', 'action' =>'buscarPorNombre', 'nivel_usuario'=>1),
+    'ver' => array('controller' =>'Controller', 'action' =>'ver', 'nivel_usuario'=>1),
+    'error' => array('controller' =>'Controller', 'action' =>'error', 'nivel_usuario'=>0)
 );
 // Parseo de la ruta
 if (isset($_GET['ctl'])) {
@@ -48,8 +50,18 @@ En caso de estar utilizando sesiones y permisos en las diferentes acciones compr
 */
 
 if (method_exists($controlador['controller'],$controlador['action'])) {
-    call_user_func(array(new $controlador['controller'],
+    if ($controlador['nivel_usuario']<=$_SESSION['nivel_usuario']) {
+        call_user_func(array(new $controlador['controller'],
         $controlador['action']));
+    } else {
+        header('Status: 403 Forbiden');
+        echo '<html><body><h1>Error 403: No tiene acceso al controlador <i>' .
+            $controlador['controller'] .
+            '->' .
+            $controlador['action'] .
+            '</i> </h1></body></html>';
+    }
+
 } else {
     header('Status: 404 Not Found');
     echo '<html><body><h1>Error 404: El controlador <i>' .
