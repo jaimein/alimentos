@@ -34,9 +34,11 @@ if (isset($_GET['ctl'])) {
     } else {
 
         //Si el valor puesto en ctl en la URL no existe en el array de mapeo envía una cabecera de error
-        header('Status: 404 Not Found');
-        echo '<html><body><h1>Error 404: No existe la ruta <i>' .
-            $_GET['ctl'] .'</p></body></html>';
+        error_log("No existe ". $_GET['ctl'] . "-" . microtime() . PHP_EOL, 3, "errores_no_valido.txt");
+        require __DIR__ . '/../app/templates/error.php';
+        // header('Status: 404 Not Found');
+        // echo '<html><body><h1>Error 404: No existe la ruta <i>' .
+        //     $_GET['ctl'] .'</p></body></html>';
             exit;
     }
 } else {
