@@ -5,3 +5,4 @@ No tiene acceso al controladorController->listarno existe-0.36012000 1581598779
 No tiene acceso al controladorController->listarno existe-0.16802500 1581598780
 No tiene acceso al controladorController->listarno existe-0.70213900 1581621848
 No tiene acceso al controladorController->verno existe-0.00831100 1581624241
+No tiene acceso al controladorController->listarno existe-0.43134000 1581625956

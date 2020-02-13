@@ -1,8 +1,9 @@
 <meta charset="UTF-8">
 <?php
 
-function obtenerTiempo($poblacion,$pais='es')
+function obtenerTiempo($poblacion='Valencia',$pais='es')
 {
+    //$poblacion='Valencia';
     //de momento si no se indica otro pais saldra españa
     $html = file_get_contents("http://api.openweathermap.org/data/2.5/weather?q=".$poblacion.",".$pais."&appid=96edde9f7c64ae00b99322b16b678542");
     $json = json_decode($html);
