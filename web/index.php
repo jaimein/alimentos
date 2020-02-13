@@ -5,6 +5,7 @@ require_once __DIR__ . '/../app/Config.php';
 require_once __DIR__ . '/../app/Model.php';
 require_once __DIR__ . '/../app/Controller.php';
 require_once __DIR__ . '/../app/libs/sesion.php';
+require_once __DIR__ . '/../app/libs/obtenerExternos.php';
 sec_session_start();
 /*
 Si tenemos que usar sesiones podemos poner aqui el inicio de sesión, de manera que si el usuario todavia no está logueado
@@ -32,7 +33,13 @@ $map = array(
 $params = array(
     'usuario' => getUsuario(),
     'ciudad' => getCiudad(),
+    'tiempo' => obtenerTiempo(getCiudad()),
 );
+if (empty($params['ciudad'])) {
+    $params['tiempo'] = obtenerTiempo($params['ciudad']);
+} else {
+    $params['tiempo'] = '';
+}
 // Parseo de la ruta
 if (isset($_GET['ctl'])) {
     if (isset($map[$_GET['ctl']])) {
@@ -60,7 +67,7 @@ En caso de estar utilizando sesiones y permisos en las diferentes acciones compr
 if (method_exists($controlador['controller'], $controlador['action'])) {
     if ($controlador['nivel_usuario'] <= $_SESSION['nivel_usuario']) {
         call_user_func(array(new $controlador['controller'],
-            $controlador['action']),$params);
+            $controlador['action']), $params);
     } else {
         error_log("No tiene acceso al controlador" .
             $controlador['controller'] .
