@@ -13,6 +13,11 @@
         <h1>Pagina web de información de alimentos</h1>
         <div id="infoDer">
         <span><?php echo $params['usuario'] ?></span>
+        <?php if (!empty($params['ciudad'])) {
+    echo "<span>". $params['ciudad'] .": ".$params['tiempo']['temp_celsius']." ºC </span>";
+ } 
+?>
+
         <span><a href="index.php?ctl=logout">logout</a></span>
         </div>
     </div>

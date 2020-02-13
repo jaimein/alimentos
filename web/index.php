@@ -33,10 +33,11 @@ $map = array(
 $params = array(
     'usuario' => getUsuario(),
     'ciudad' => getCiudad(),
-    'tiempo' => obtenerTiempo(getCiudad()),
+    //'tiempo' => obtenerTiempo(getCiudad()),
 );
-if (empty($params['ciudad'])) {
+if (!empty($params['ciudad'])) {
     $params['tiempo'] = obtenerTiempo($params['ciudad']);
+    $params['tiempo']['temp_celsius'] = round(($params['tiempo']['temp'] - 273.15), 1);
 } else {
     $params['tiempo'] = '';
 }
