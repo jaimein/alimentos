@@ -64,8 +64,8 @@ function getUsuario()
     } else {
         return "";
     }
-
-    function getCiudad()
+}
+function getCiudad()
     {
         if (isset($_SESSION['ciudad'])) {
             return $_SESSION['ciudad'];
@@ -74,4 +74,5 @@ function getUsuario()
         }
     }
 
-}
+
+    ?>
