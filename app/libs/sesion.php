@@ -1,13 +1,13 @@
 <?php
 
 function sec_session_start()
-{ 
+{
     $session_name = 'sec_session_id';
     $secure = false;
     $httponly = true;
     $cookieParams = session_get_cookie_params();
     session_set_cookie_params(
-        15*60,
+        15 * 60,
         $cookieParams["path"],
         $cookieParams["domain"],
         $secure,
@@ -15,25 +15,25 @@ function sec_session_start()
 
     session_name($session_name);
     session_start();
-    if(!$_SESSION){
+    if (!$_SESSION) {
         $_SESSION["nivel_usuario"] = 0;
     }
-        // Establecer tiempo de vida de la sesión en segundos
-        $inactividad = 15*60;
-        // Comprobar si $_SESSION["timeout"] está establecida
-        if (isset($_SESSION["timeout"])) {
-            // Calcular el tiempo de vida de la sesión (TTL = Time To Live)
-            $sessionTTL = time() - $_SESSION["timeout"];
-            if ($sessionTTL > $inactividad) {
-                session_destroy();
-                header("Location: index.php");
-            } else {
-                session_regenerate_id(true);
-            }
+    // Establecer tiempo de vida de la sesión en segundos
+    $inactividad = 15 * 60;
+    // Comprobar si $_SESSION["timeout"] está establecida
+    if (isset($_SESSION["timeout"])) {
+        // Calcular el tiempo de vida de la sesión (TTL = Time To Live)
+        $sessionTTL = time() - $_SESSION["timeout"];
+        if ($sessionTTL > $inactividad) {
+            session_destroy();
+            header("Location: index.php");
+        } else {
+            session_regenerate_id(true);
         }
-        // El siguiente key se crea cuando se inicia sesión
-        $_SESSION["timeout"] = time();
-    
+    }
+    // El siguiente key se crea cuando se inicia sesión
+    $_SESSION["timeout"] = time();
+
 }
 
 function login($usuario, $password)
@@ -53,6 +53,25 @@ function login($usuario, $password)
         return true;
     } else {
         return false;
+    }
+
+}
+
+function getUsuario()
+{
+    if (isset($_SESSION['user'])) {
+        return $_SESSION['user'];
+    } else {
+        return "";
+    }
+
+    function getCiudad()
+    {
+        if (isset($_SESSION['ciudad'])) {
+            return $_SESSION['ciudad'];
+        } else {
+            return "";
+        }
     }
 
 }
