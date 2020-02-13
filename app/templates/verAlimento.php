@@ -1,6 +1,6 @@
 <?php ob_start() ?>
 
-<h1><?php echo $params['nombre'] ?></h1>
+<h1><?php echo $params['alimento']['nombre'] ?></h1>
 <table border="1">
 
 <tr>
