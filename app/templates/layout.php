@@ -11,6 +11,10 @@
 <body>
     <div id="cabecera">
         <h1>Pagina web de información de alimentos</h1>
+        <div id="infoDer">
+        <span><?php echo $params['usuario'] ?></span>
+        <span><a href="index.php?ctl=logout">logout</a></span>
+        </div>
     </div>
 
     <div id="menu">

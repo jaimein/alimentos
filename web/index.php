@@ -26,6 +26,7 @@ $map = array(
     'buscar' => array('controller' => 'Controller', 'action' => 'buscarPorNombre', 'nivel_usuario' => 1),
     'ver' => array('controller' => 'Controller', 'action' => 'ver', 'nivel_usuario' => 1),
     'error' => array('controller' => 'Controller', 'action' => 'error', 'nivel_usuario' => 0),
+    'logout' => array('controller' => 'Controller', 'action' => 'logout', 'nivel_usuario' => 0),
 );
 
 $params = array(
@@ -59,7 +60,7 @@ En caso de estar utilizando sesiones y permisos en las diferentes acciones compr
 if (method_exists($controlador['controller'], $controlador['action'])) {
     if ($controlador['nivel_usuario'] <= $_SESSION['nivel_usuario']) {
         call_user_func(array(new $controlador['controller'],
-            $controlador['action']));
+            $controlador['action']),$params);
     } else {
         error_log("No tiene acceso al controlador" .
             $controlador['controller'] .

@@ -1,9 +1,10 @@
 <?php
 include 'libs/utils.php';
 include 'libs/classValidacion.php';
+require_once __DIR__ . '/../app/libs/sesion.php';
 class Controller
 {
-    public function inicio()
+    public function inicio($params)
     {
         // $params = array(
         //     'mensaje' => 'Bienvenido al repositorio de alimentos',
@@ -15,12 +16,12 @@ class Controller
         require __DIR__ . '/templates/inicio.php';
     }
 
-    public function error()
+    public function error($params)
     {
         require __DIR__ . '/templates/error.php';
     }
 
-    public function listar()
+    public function listar($params)
     {
         try {
             $m = new Model();
@@ -39,7 +40,7 @@ class Controller
         require __DIR__ . '/templates/mostrarAlimentos.php';
     }
 
-    public function insertar()
+    public function insertar($params)
     {
         try {
             // $params = array(
@@ -118,7 +119,7 @@ class Controller
         require __DIR__ . '/templates/formInsertar.php';
     }
 
-    public function buscarPorNombre()
+    public function buscarPorNombre($params)
     {
         try {
             // $params = array(
@@ -143,7 +144,7 @@ class Controller
         require __DIR__ . '/templates/buscarPorNombre.php';
     }
 
-    public function ver()
+    public function ver($params)
     {
         try {
             if (!isset($_GET['id'])) {
@@ -164,7 +165,7 @@ class Controller
         require __DIR__ . '/templates/verAlimento.php';
     }
 
-    public function registro()
+    public function registro($params)
     {
         // $params = array(
         //     'usuario' => '',
@@ -272,7 +273,7 @@ class Controller
         }
     }
 
-    public function login()
+    public function login($params)
     {
 
         // $params = array(
@@ -340,5 +341,10 @@ class Controller
             }
         }
     }
+public function logout(){
+    logout_sesion();
+    header('Location: index.php');
+}
+
 }
 ;
