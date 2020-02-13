@@ -7,3 +7,6 @@ No existe registro222-0.66669900 1581586332
 No existe listar2-0.97604800 1581586372
 No existe listar2-0.49954500 1581586393
 No existe listar2-0.99555700 1581586412
+No existe buscarAlimentosCombinada-0.63336500 1581587361
+No existe buscarAlimentosCombinada-0.93446600 1581587434
+No existe inicio22-0.23693900 1581587456

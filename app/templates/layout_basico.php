@@ -13,6 +13,13 @@
         <h1>Pagina web de información de alimentos</h1>
     </div>
 
+    <div id="menu">
+        <hr />
+        <a href="index.php?ctl=inicio">inicio</a> 
+        <a href="index.php?ctl=registro">registro</a> 
+        <hr />
+    </div>
+
     <div id="contenido">
         <?php echo $contenido ?>
     </div>

@@ -56,20 +56,33 @@ if (method_exists($controlador['controller'],$controlador['action'])) {
         call_user_func(array(new $controlador['controller'],
         $controlador['action']));
     } else {
-        header('Status: 403 Forbiden');
-        echo '<html><body><h1>Error 403: No tiene acceso al controlador <i>' .
-            $controlador['controller'] .
-            '->' .
-            $controlador['action'] .
-            '</i> </h1></body></html>';
+        error_log("No tiene acceso al controlador" .
+        $controlador['controller'] .
+        "->".
+        $controlador['action'] .
+        "no existe" . "-" . microtime() . PHP_EOL, 3, "errores_acceso.txt");
+        require __DIR__ . '/../app/templates/no_permisos.php';
+        
+        // header('Status: 403 Forbiden');
+        // echo '<html><body><h1>Error 403: No tiene acceso al controlador <i>' .
+        //     $controlador['controller'] .
+        //     '->' .
+        //     $controlador['action'] .
+        //     '</i> </h1></body></html>';
     }
 
 } else {
-    header('Status: 404 Not Found');
-    echo '<html><body><h1>Error 404: El controlador <i>' .
-        $controlador['controller'] .
-        '->' .
-        $controlador['action'] .
-        '</i> no existe</h1></body></html>';
+    error_log("El controlador" .
+    $controlador['controller'] .
+    "->".
+    $controlador['action'] .
+    "no existe" . "-" . microtime() . PHP_EOL, 3, "errores_no_valido.txt");
+    require __DIR__ . '/../app/templates/error.php';
+    // header('Status: 404 Not Found');
+    // echo '<html><body><h1>Error 404: El controlador <i>' .
+    //     $controlador['controller'] .
+    //     '->' .
+    //     $controlador['action'] .
+    //     '</i> no existe</h1></body></html>';
 }
 ?>
